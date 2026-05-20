@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nadar AI Consulting — Enterprise AI Architecture & Strategy</title>
+<meta name="description" content="Subhash Kumar Nadar — Senior GenAI Consultant, AI/ML Architect with 25+ years experience delivering enterprise AI solutions across BFSI, Pharma, and F&B sectors.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --ink: #0f1117;
+    --ink-2: #3d4152;
+    --ink-3: #6b7080;
+    --gold: #c9a84c;
+    --gold-light: #f0e4c0;
+    --gold-dark: #8a6a1e;
+    --surface: #faf9f6;
+    --surface-2: #f3f0e8;
+    --white: #ffffff;
+    --accent: #1a3a5c;
+    --accent-light: #e8f0f8;
+    --border: #e2ddd1;
+    --serif: 'DM Serif Display', Georgia, serif;
+    --sans: 'DM Sans', system-ui, sans-serif;
+    --max: 1120px;
+    --gutter: clamp(1.5rem, 5vw, 4rem);
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--surface);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(250,249,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 var(--gutter);
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .nav-brand {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    color: var(--ink);
+    text-decoration: none;
+    letter-spacing: -0.01em;
+  }
+  .nav-brand span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.875rem;
+    font-weight: 400;
+    color: var(--ink-2);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold-dark); }
+  .nav-cta {
+    background: var(--ink);
+    color: var(--white) !important;
+    padding: 0.5rem 1.25rem;
+    border-radius: 2px;
+    font-size: 0.8rem !important;
+    letter-spacing: 0.06em !important;
+    text-transform: uppercase;
+    transition: background 0.2s !important;
+  }
+  .nav-cta:hover { background: var(--accent) !important; color: var(--white) !important; }
+
+  .hamburger { display: none; cursor: pointer; background: none; border: none; flex-direction: column; gap: 5px; }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--ink); transition: 0.3s; }
+  .mobile-menu {
+    display: none; position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
+    background: var(--surface); border-bottom: 1px solid var(--border);
+    padding: 1.5rem var(--gutter); flex-direction: column; gap: 1.25rem;
+  }
+  .mobile-menu a { font-size: 1rem; color: var(--ink-2); text-decoration: none; }
+  .mobile-menu.open { display: flex; }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    padding-top: 64px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    max-width: var(--max);
+    margin: 0 auto;
+    padding-left: var(--gutter);
+    padding-right: var(--gutter);
+    align-items: center;
+    gap: 4rem;
+  }
+  .hero-left { padding-top: 2rem; }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 500;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block; width: 32px; height: 1px; background: var(--gold);
+  }
+  .hero-headline {
+    font-family: var(--serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .hero-headline em {
+    font-style: italic;
+    color: var(--gold-dark);
+  }
+  .hero-sub {
+    font-size: 1.0625rem;
+    color: var(--ink-2);
+    line-height: 1.75;
+    margin-bottom: 2rem;
+    font-weight: 300;
+    max-width: 480px;
+  }
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--ink); color: var(--white);
+    padding: 0.875rem 2rem; border-radius: 2px;
+    font-size: 0.875rem; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+  .btn-outline {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: transparent; color: var(--ink);
+    border: 1px solid var(--border);
+    padding: 0.875rem 2rem; border-radius: 2px;
+    font-size: 0.875rem; font-weight: 400;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    text-decoration: none;
+    transition: border-color 0.2s, transform 0.15s;
+  }
+  .btn-outline:hover { border-color: var(--ink); transform: translateY(-1px); }
+
+  .hero-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem; margin-top: 3.5rem;
+    padding-top: 2.5rem; border-top: 1px solid var(--border);
+  }
+  .stat-num {
+    font-family: var(--serif);
+    font-size: 2rem;
+    color: var(--ink);
+    display: block;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--ink-3);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .hero-right {
+    position: relative;
+    display: flex; flex-direction: column; gap: 1.25rem;
+    padding-top: 3rem;
+  }
+  .profile-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .profile-card::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+  }
+  .profile-initials {
+    width: 64px; height: 64px; border-radius: 50%;
+    background: var(--ink); color: var(--white);
+    font-family: var(--serif); font-size: 1.5rem;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem; letter-spacing: 0.05em;
+  }
+  .profile-name { font-family: var(--serif); font-size: 1.4rem; color: var(--ink); margin-bottom: 0.25rem; }
+  .profile-title { font-size: 0.85rem; color: var(--gold-dark); font-weight: 500; letter-spacing: 0.03em; margin-bottom: 1rem; }
+  .profile-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 1rem; }
+  .tag {
+    font-size: 0.7rem; letter-spacing: 0.06em; text-transform: uppercase;
+    padding: 0.25rem 0.75rem; border: 1px solid var(--border);
+    border-radius: 2px; color: var(--ink-2); background: var(--surface-2);
+  }
+  .tag.gold { border-color: var(--gold); color: var(--gold-dark); background: rgba(201,168,76,0.08); }
+  .profile-location { font-size: 0.8rem; color: var(--ink-3); display: flex; align-items: center; gap: 0.35rem; }
+
+  .cert-badge {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1rem 1.25rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .cert-icon {
+    width: 40px; height: 40px; background: var(--gold-light);
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem; flex-shrink: 0;
+  }
+  .cert-text { font-size: 0.8rem; color: var(--ink-2); }
+  .cert-text strong { display: block; font-size: 0.875rem; color: var(--ink); font-weight: 500; }
+
+  .research-badge {
+    background: var(--accent-light);
+    border: 1px solid #c0d4e8;
+    border-radius: 4px;
+    padding: 0.875rem 1.25rem;
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.8rem; color: var(--accent);
+  }
+  .research-badge strong { font-weight: 500; }
+
+  /* ─── SECTIONS ─── */
+  section { padding: 6rem var(--gutter); }
+  .section-inner { max-width: var(--max); margin: 0 auto; }
+
+  .section-label {
+    display: flex; align-items: center; gap: 0.75rem;
+    font-size: 0.7rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--gold-dark); margin-bottom: 1rem;
+  }
+  .section-label::after { content: ''; flex: 1; max-width: 40px; height: 1px; background: var(--gold); }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin-bottom: 1.25rem;
+  }
+  .section-body {
+    font-size: 1rem; color: var(--ink-2); max-width: 580px;
+    line-height: 1.8; font-weight: 300;
+  }
+
+  /* ─── SERVICES ─── */
+  #services { background: var(--white); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5px;
+    background: var(--border);
+    border: 1.5px solid var(--border);
+    margin-top: 3rem;
+  }
+  .service-card {
+    background: var(--white);
+    padding: 2rem 2rem 2.25rem;
+    position: relative;
+    transition: background 0.25s;
+  }
+  .service-card:hover { background: var(--surface); }
+  .service-num {
+    font-family: var(--serif); font-size: 3rem;
+    color: var(--border); line-height: 1;
+    margin-bottom: 1rem;
+    transition: color 0.25s;
+  }
+  .service-card:hover .service-num { color: var(--gold-light); }
+  .service-icon {
+    width: 44px; height: 44px;
+    background: var(--surface-2); border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.375rem; margin-bottom: 1.25rem;
+  }
+  .service-name {
+    font-family: var(--serif); font-size: 1.25rem;
+    color: var(--ink); margin-bottom: 0.75rem;
+  }
+  .service-desc { font-size: 0.9rem; color: var(--ink-2); line-height: 1.7; font-weight: 300; }
+  .service-bullets { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.35rem; }
+  .service-bullet {
+    font-size: 0.8rem; color: var(--ink-3);
+    display: flex; align-items: flex-start; gap: 0.5rem;
+  }
+  .service-bullet::before {
+    content: '—'; color: var(--gold); flex-shrink: 0; margin-top: 0.05em;
+  }
+
+  /* ─── WORK ─── */
+  #work { background: var(--surface); }
+  .work-header { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: end; margin-bottom: 3.5rem; }
+  .work-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+  .work-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.75rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .work-card:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(15,17,23,0.07); }
+  .work-tag {
+    display: inline-block; font-size: 0.7rem;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 0.2rem 0.65rem; border-radius: 2px;
+    margin-bottom: 1rem; font-weight: 500;
+  }
+  .work-tag.bfsi { background: var(--accent-light); color: var(--accent); }
+  .work-tag.pharma { background: rgba(201,168,76,0.12); color: var(--gold-dark); }
+  .work-tag.fnb { background: rgba(26,58,92,0.06); color: var(--accent); }
+  .work-tag.tech { background: #f0f0f0; color: #444; }
+  .work-title { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); margin-bottom: 0.75rem; line-height: 1.3; }
+  .work-body { font-size: 0.875rem; color: var(--ink-2); line-height: 1.7; font-weight: 300; }
+  .work-impact {
+    margin-top: 1.25rem; padding-top: 1rem;
+    border-top: 1px solid var(--surface-2);
+    font-size: 0.775rem; color: var(--gold-dark);
+    font-weight: 500; letter-spacing: 0.02em;
+    display: flex; align-items: center; gap: 0.4rem;
+  }
+  .work-impact::before { content: '↗'; }
+
+  /* ─── EXPERTISE ─── */
+  #expertise { background: var(--ink); color: var(--white); }
+  #expertise .section-label { color: var(--gold-light); }
+  #expertise .section-label::after { background: var(--gold); }
+  #expertise .section-title { color: var(--white); }
+  #expertise .section-body { color: rgba(255,255,255,0.6); }
+
+  .expertise-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; margin-top: 3.5rem; }
+  .exp-block {}
+  .exp-category {
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--gold); margin-bottom: 1rem; font-weight: 500;
+    padding-bottom: 0.75rem; border-bottom: 1px solid rgba(255,255,255,0.1);
+  }
+  .exp-items { display: flex; flex-direction: column; gap: 0.6rem; }
+  .exp-item {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.875rem; color: rgba(255,255,255,0.75);
+    font-weight: 300;
+  }
+  .exp-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
+
+  /* ─── JOURNEY ─── */
+  #journey { background: var(--surface); }
+  .timeline { margin-top: 3rem; position: relative; }
+  .timeline::before {
+    content: ''; position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px; background: var(--border);
+  }
+  .timeline-item { padding-left: 2.5rem; margin-bottom: 2.5rem; position: relative; }
+  .timeline-item::before {
+    content: ''; position: absolute;
+    left: -4px; top: 0.4rem;
+    width: 8px; height: 8px;
+    border-radius: 50%; background: var(--gold);
+    box-shadow: 0 0 0 3px var(--surface);
+  }
+  .timeline-period { font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.4rem; }
+  .timeline-role { font-family: var(--serif); font-size: 1.2rem; color: var(--ink); margin-bottom: 0.2rem; }
+  .timeline-org { font-size: 0.85rem; color: var(--ink-3); margin-bottom: 0.75rem; }
+  .timeline-body { font-size: 0.875rem; color: var(--ink-2); line-height: 1.7; font-weight: 300; }
+
+  /* ─── CREDENTIALS ─── */
+  #credentials { background: var(--white); }
+  .creds-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; margin-top: 2.5rem; }
+  .cred-card {
+    background: var(--surface);
+    border: 1px solid var(--border); border-radius: 4px;
+    padding: 1.5rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .cred-icon-wrap {
+    width: 44px; height: 44px; border-radius: 4px;
+    background: var(--ink); flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.25rem;
+  }
+  .cred-title { font-weight: 500; font-size: 0.9rem; color: var(--ink); margin-bottom: 0.2rem; }
+  .cred-org { font-size: 0.775rem; color: var(--ink-3); margin-bottom: 0.1rem; }
+  .cred-year { font-size: 0.75rem; color: var(--gold-dark); font-weight: 500; }
+
+  /* ─── CONTACT ─── */
+  #contact { background: var(--ink); color: var(--white); text-align: center; }
+  #contact .section-label { justify-content: center; }
+  #contact .section-label::after { display: none; }
+  #contact .section-label::before { content: ''; width: 40px; height: 1px; background: var(--gold); }
+  #contact .section-title { color: var(--white); max-width: 640px; margin: 0 auto 1.25rem; }
+  #contact .section-body { color: rgba(255,255,255,0.55); margin: 0 auto 2.5rem; text-align: center; }
+
+  .contact-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-bottom: 2.5rem; }
+  .contact-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.875rem; color: rgba(255,255,255,0.7);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .contact-item:hover { color: var(--gold-light); }
+  .contact-item-icon { font-size: 1rem; color: var(--gold); }
+
+  .btn-gold {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--gold); color: var(--ink);
+    padding: 0.9rem 2.25rem; border-radius: 2px;
+    font-size: 0.875rem; font-weight: 500;
+    letter-spacing: 0.04em; text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-gold:hover { background: var(--gold-light); transform: translateY(-1px); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink); border-top: 1px solid rgba(255,255,255,0.08);
+    padding: 2rem var(--gutter);
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    font-size: 0.8rem; color: rgba(255,255,255,0.35);
+  }
+  footer a { color: rgba(255,255,255,0.35); text-decoration: none; }
+  footer a:hover { color: var(--gold); }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-up {
+    opacity: 0; transform: translateY(24px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 768px) {
+    .hero { grid-template-columns: 1fr; min-height: auto; padding-top: 6rem; padding-bottom: 3rem; gap: 2.5rem; }
+    .hero-stats { grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .nav-links { display: none; }
+    .hamburger { display: flex; }
+    .expertise-grid { grid-template-columns: 1fr; }
+    .work-header { grid-template-columns: 1fr; gap: 1rem; }
+    section { padding: 4rem var(--gutter); }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-brand">Nadar <span>AI</span></a>
+  <ul class="nav-links">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#journey">Journey</a></li>
+    <li><a href="#contact" class="nav-cta">Engage</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#services" onclick="closeMobile()">Services</a>
+  <a href="#work" onclick="closeMobile()">Work</a>
+  <a href="#expertise" onclick="closeMobile()">Expertise</a>
+  <a href="#journey" onclick="closeMobile()">Journey</a>
+  <a href="#contact" onclick="closeMobile()">Contact</a>
+</div>
+
+<!-- HERO -->
+<main>
+<section class="hero">
+  <div class="hero-left fade-up">
+    <div class="hero-eyebrow">Enterprise AI Consulting</div>
+    <h1 class="hero-headline">
+      Turning AI complexity into<br>
+      <em>business clarity</em>
+    </h1>
+    <p class="hero-sub">
+      Senior GenAI Consultant and AI/ML Architect with 25+ years of enterprise technology experience. I help organisations architect, build, and scale production-ready AI systems — from strategy to delivery.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn-primary">Start a Conversation →</a>
+      <a href="#work" class="btn-outline">View Work</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <span class="stat-num">25+</span>
+        <span class="stat-label">Years IT &amp; AI Experience</span>
+      </div>
+      <div>
+        <span class="stat-num">90+</span>
+        <span class="stat-label">Member AI Factory Built</span>
+      </div>
+      <div>
+        <span class="stat-num">₹2M+</span>
+        <span class="stat-label">Pipeline Value Created</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="hero-right fade-up" style="transition-delay:0.15s">
+    <div class="profile-card">
+      <div class="profile-initials">SKN</div>
+      <div class="profile-name">Subhash Kumar Nadar</div>
+      <div class="profile-title">Senior GenAI Consultant · AI/ML Architect · AI Engineering Manager</div>
+      <div class="profile-tags">
+        <span class="tag gold">GenAI Architecture</span>
+        <span class="tag">RAG Systems</span>
+        <span class="tag">Agentic AI</span>
+        <span class="tag">Enterprise MLOps</span>
+        <span class="tag">AI Strategy</span>
+      </div>
+      <div class="profile-location">📍 Pune, India · Available for global engagements</div>
+    </div>
+
+    <div class="cert-badge">
+      <div class="cert-icon">🏛</div>
+      <div class="cert-text">
+        <strong>Claude Certified Architect – Foundations</strong>
+        Anthropic · Certified May 2026
+      </div>
+    </div>
+
+    <div class="research-badge">
+      📖 <span><strong>Published Researcher</strong> — AI in Pharmacovigilance, Elsevier (ScienceDirect)</span>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="section-inner">
+    <div class="section-label">What I Do</div>
+    <h2 class="section-title">End-to-end AI consulting,<br>from vision to production</h2>
+    <p class="section-body">Whether you are exploring AI's potential or scaling a working system, I bring architecture depth and delivery experience across the full lifecycle.</p>
+
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-num">01</div>
+        <div class="service-icon">🏗</div>
+        <div class="service-name">AI Strategy & Roadmapping</div>
+        <p class="service-desc">Define your AI ambition with a grounded, executable roadmap. I evaluate use cases, prioritise for business value, and architect the operating model needed to sustain delivery.</p>
+        <div class="service-bullets">
+          <span class="service-bullet">Use case discovery &amp; prioritisation</span>
+          <span class="service-bullet">AI operating model design</span>
+          <span class="service-bullet">Governance &amp; risk frameworks</span>
+          <span class="service-bullet">Build vs. buy assessment</span>
+        </div>
+      </div>
+
+      <div class="service-card fade-up" style="transition-delay:0.1s">
+        <div class="service-num">02</div>
+        <div class="service-icon">🤖</div>
+        <div class="service-name">GenAI Architecture & Engineering</div>
+        <p class="service-desc">Design and build production-grade Generative AI systems — RAG pipelines, agentic workflows, NLQ-to-SQL interfaces, and entity extraction at scale.</p>
+        <div class="service-bullets">
+          <span class="service-bullet">RAG (talk-to-document) architectures</span>
+          <span class="service-bullet">Agentic AI &amp; multi-agent orchestration</span>
+          <span class="service-bullet">LLM fine-tuning &amp; prompt engineering</span>
+          <span class="service-bullet">Vector DB &amp; semantic search design</span>
+        </div>
+      </div>
+
+      <div class="service-card fade-up" style="transition-delay:0.2s">
+        <div class="service-num">03</div>
+        <div class="service-icon">🏭</div>
+        <div class="service-name">AI Factory Build & Scale</div>
+        <p class="service-desc">Stand up a high-performing AI delivery team from scratch. I have built and led a 90-member GenAI Factory, establishing the processes, talent, and tooling for sustained output.</p>
+        <div class="service-bullets">
+          <span class="service-bullet">Team structure &amp; hiring strategy</span>
+          <span class="service-bullet">Agile AI delivery at scale</span>
+          <span class="service-bullet">CoE establishment</span>
+          <span class="service-bullet">PoC-to-production lifecycle</span>
+        </div>
+      </div>
+
+      <div class="service-card fade-up" style="transition-delay:0.05s">
+        <div class="service-num">04</div>
+        <div class="service-icon">📊</div>
+        <div class="service-name">ML Engineering & MLOps</div>
+        <p class="service-desc">Design robust ML pipelines from feature engineering through deployment monitoring. Specialising in NLP, predictive modelling, and enterprise-grade MLOps practices.</p>
+        <div class="service-bullets">
+          <span class="service-bullet">NLP model development (spaCy, BERT)</span>
+          <span class="service-bullet">ML pipeline &amp; workflow automation</span>
+          <span class="service-bullet">Model deployment &amp; observability</span>
+          <span class="service-bullet">Azure OpenAI / AWS / GCP platforms</span>
+        </div>
+      </div>
+
+      <div class="service-card fade-up" style="transition-delay:0.15s">
+        <div class="service-num">05</div>
+        <div class="service-icon">🔍</div>
+        <div class="service-name">Pre-Sales & Technical Solutioning</div>
+        <p class="service-desc">Translate business challenges into winning AI proposals. I craft compelling technical narratives, size engagements accurately, and build client confidence through rigorous solutioning.</p>
+        <div class="service-bullets">
+          <span class="service-bullet">RFP response &amp; proposal architecture</span>
+          <span class="service-bullet">PoC design &amp; rapid prototyping</span>
+          <span class="service-bullet">Executive presentations</span>
+          <span class="service-bullet">Pricing &amp; effort estimation</span>
+        </div>
+      </div>
+
+      <div class="service-card fade-up" style="transition-delay:0.25s">
+        <div class="service-num">06</div>
+        <div class="service-icon">🧬</div>
+        <div class="service-name">Domain AI — Pharma &amp; BFSI</div>
+        <p class="service-desc">Deep domain expertise in regulated industries. From pharmacovigilance automation to financial insight assistants — I understand compliance, data sensitivity, and sector-specific nuance.</p>
+        <div class="service-bullets">
+          <span class="service-bullet">Pharmacovigilance &amp; safety automation</span>
+          <span class="service-bullet">Regulatory document processing</span>
+          <span class="service-bullet">BFSI data &amp; insight platforms</span>
+          <span class="service-bullet">GDPR/FSA-compliant architectures</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section id="work">
+  <div class="section-inner">
+    <div class="work-header">
+      <div>
+        <div class="section-label">Selected Work</div>
+        <h2 class="section-title">AI solutions that delivered measurable outcomes</h2>
+      </div>
+      <p class="section-body" style="max-width: 360px; align-self: end;">20+ GenAI use cases delivered across F&B, BFSI, Pharma, and Life Sciences — each built for production, not just proof-of-concept.</p>
+    </div>
+
+    <div class="work-grid">
+      <div class="work-card fade-up">
+        <span class="work-tag fnb">F&B · Accenture</span>
+        <div class="work-title">GenAI Finance &amp; Sales Insight Assistant</div>
+        <p class="work-body">Designed an NLQ-powered Finance & Sales Reporting assistant that enables business users to query structured databases in plain English and generate instant visualisations — eliminating dependency on BI teams.</p>
+        <div class="work-impact">Talk-to-Data NLQ architecture · Business-led self-serve analytics</div>
+      </div>
+
+      <div class="work-card fade-up" style="transition-delay:0.1s">
+        <span class="work-tag fnb">F&B · Accenture</span>
+        <div class="work-title">Intelligent Maintenance Chatbot (RAG)</div>
+        <p class="work-body">Built a scalable RAG-powered chatbot ingesting equipment manuals and training datasets, enabling maintenance teams to resolve machinery issues proactively with accurate, document-grounded answers.</p>
+        <div class="work-impact">Talk-to-Document RAG · Reduced equipment downtime response time</div>
+      </div>
+
+      <div class="work-card fade-up" style="transition-delay:0.2s">
+        <span class="work-tag fnb">F&B · Accenture</span>
+        <div class="work-title">Purchase Intent Prediction Engine</div>
+        <p class="work-body">Designed a GenAI + ML hybrid model replacing traditional consumer surveys to predict product purchase intent in real time — cutting cost and turnaround time significantly across the supply chain.</p>
+        <div class="work-impact">LLM + ML Hybrid · Replaced costly manual survey processes</div>
+      </div>
+
+      <div class="work-card fade-up">
+        <span class="work-tag fnb">F&B · Accenture</span>
+        <div class="work-title">GenAI Database Migration Platform</div>
+        <p class="work-body">End-to-end GenAI application for database landscape discovery, modernisation planning, and automated schema migration and transformation — accelerating a multi-year migration programme.</p>
+        <div class="work-impact">Automated legacy migration · ₹2M+ pipeline value generated</div>
+      </div>
+
+      <div class="work-card fade-up" style="transition-delay:0.1s">
+        <span class="work-tag pharma">Pharma · TCS</span>
+        <div class="work-title">Pharmacovigilance Case Processing AI</div>
+        <p class="work-body">Designed end-to-end AI automation for adverse event case processing — extracting structured and unstructured clinical data from PDFs, XML, and images using NLP (spaCy, NLTK) and ML (SVM, CRF). Outputs converted to CIOMS/E2B R2/R3 formats.</p>
+        <div class="work-impact">Dramatic reduction in manual processing time · Elsevier research published</div>
+      </div>
+
+      <div class="work-card fade-up" style="transition-delay:0.2s">
+        <span class="work-tag bfsi">BFSI · TCS</span>
+        <div class="work-title">Call Centre Training Simulator</div>
+        <p class="work-body">Developed a fine-tuned LLM with emotional intelligence capabilities for immersive call centre agent training — simulating difficult customer interactions to improve agent response quality and empathy scores.</p>
+        <div class="work-impact">Fine-tuned GPT · Measurable improvement in agent performance</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERTISE -->
+<section id="expertise">
+  <div class="section-inner">
+    <div class="section-label">Technical Depth</div>
+    <h2 class="section-title">The stack behind the strategy</h2>
+    <p class="section-body">Hands-on expertise across the full AI/ML engineering stack — from LLM orchestration and vector databases to enterprise cloud platforms and agentic frameworks.</p>
+
+    <div class="expertise-grid">
+      <div class="exp-block fade-up">
+        <div class="exp-category">GenAI Architectures</div>
+        <div class="exp-items">
+          <div class="exp-item"><span class="exp-dot"></span>RAG — Retrieval Augmented Generation</div>
+          <div class="exp-item"><span class="exp-dot"></span>Agentic AI & Multi-agent Orchestration</div>
+          <div class="exp-item"><span class="exp-dot"></span>NLQ — Natural Language to SQL</div>
+          <div class="exp-item"><span class="exp-dot"></span>Entity Extraction Pipelines</div>
+          <div class="exp-item"><span class="exp-dot"></span>LLM Fine-tuning & Prompt Engineering</div>
+        </div>
+      </div>
+
+      <div class="exp-block fade-up" style="transition-delay:0.1s">
+        <div class="exp-category">Platforms & Frameworks</div>
+        <div class="exp-items">
+          <div class="exp-item"><span class="exp-dot"></span>Microsoft Azure OpenAI / Foundry</div>
+          <div class="exp-item"><span class="exp-dot"></span>Google ADK / Vertex AI</div>
+          <div class="exp-item"><span class="exp-dot"></span>Snowflake Cortex</div>
+          <div class="exp-item"><span class="exp-dot"></span>Claude / Anthropic Platform</div>
+          <div class="exp-item"><span class="exp-dot"></span>LangChain / LangGraph / n8n</div>
+        </div>
+      </div>
+
+      <div class="exp-block fade-up" style="transition-delay:0.2s">
+        <div class="exp-category">Engineering Stack</div>
+        <div class="exp-items">
+          <div class="exp-item"><span class="exp-dot"></span>Python · spaCy · NLTK · HuggingFace</div>
+          <div class="exp-item"><span class="exp-dot"></span>Elasticsearch · Azure AI Search</div>
+          <div class="exp-item"><span class="exp-dot"></span>PostgreSQL · MySQL · Vector DBs</div>
+          <div class="exp-item"><span class="exp-dot"></span>AWS Textract · Comprehend</div>
+          <div class="exp-item"><span class="exp-dot"></span>GitHub Copilot · Claude Code</div>
+        </div>
+      </div>
+
+      <div class="exp-block fade-up">
+        <div class="exp-category">ML / NLP</div>
+        <div class="exp-items">
+          <div class="exp-item"><span class="exp-dot"></span>NLP — spaCy, NLTK, BERT, T5</div>
+          <div class="exp-item"><span class="exp-dot"></span>Machine Learning — SVM, CRF</div>
+          <div class="exp-item"><span class="exp-dot"></span>MLOps & Model Deployment</div>
+          <div class="exp-item"><span class="exp-dot"></span>Document AI & OCR pipelines</div>
+        </div>
+      </div>
+
+      <div class="exp-block fade-up" style="transition-delay:0.1s">
+        <div class="exp-category">Domains</div>
+        <div class="exp-items">
+          <div class="exp-item"><span class="exp-dot"></span>BFSI — Banking, Financial Services</div>
+          <div class="exp-item"><span class="exp-dot"></span>Pharma & PharmacoVigilance</div>
+          <div class="exp-item"><span class="exp-dot"></span>F&B / CPG</div>
+          <div class="exp-item"><span class="exp-dot"></span>Life Sciences</div>
+        </div>
+      </div>
+
+      <div class="exp-block fade-up" style="transition-delay:0.2s">
+        <div class="exp-category">Leadership</div>
+        <div class="exp-items">
+          <div class="exp-item"><span class="exp-dot"></span>AI Factory Build (90+ members)</div>
+          <div class="exp-item"><span class="exp-dot"></span>Pre-Sales & Technical Solutioning</div>
+          <div class="exp-item"><span class="exp-dot"></span>AI CoE Establishment</div>
+          <div class="exp-item"><span class="exp-dot"></span>Agile Delivery at Scale</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- JOURNEY -->
+<section id="journey">
+  <div class="section-inner" style="display: grid; grid-template-columns: 1fr 2fr; gap: 5rem; align-items: start;">
+    <div class="fade-up">
+      <div class="section-label">Professional Journey</div>
+      <h2 class="section-title">25 years building enterprise AI</h2>
+      <p class="section-body">From mainframe engineering to architecting next-generation GenAI factories — a career defined by depth, impact, and continuous reinvention.</p>
+    </div>
+    <div class="timeline fade-up" style="transition-delay:0.15s">
+      <div class="timeline-item">
+        <div class="timeline-period">Jan 2024 – Present</div>
+        <div class="timeline-role">AI/ML Architect & AI Engineering Manager</div>
+        <div class="timeline-org">Accenture India · Pune</div>
+        <div class="timeline-body">Architected and led a GenAI Factory for a large F&B enterprise — evaluating 50+ use cases, generating a ₹2M+ pipeline, and delivering 20+ production AI solutions including RAG chatbots, NLQ assistants, intent prediction models, and database migration platforms.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">Mar 2021 – Jan 2024</div>
+        <div class="timeline-role">NLP CoE & AI/ML Incubation Lead</div>
+        <div class="timeline-org">Tata Consultancy Services · Pune</div>
+        <div class="timeline-body">Led Azure OpenAI adoption via GPT-4 and Ada Embeddings. Delivered enterprise PoCs including call centre training simulators, self-serve BI platforms, document intelligence solutions, and supplier insights engines using LLMs and NLP.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">Jun 2019 – Mar 2021</div>
+        <div class="timeline-role">Patient Safety & PharmacoVigilance AI Lead</div>
+        <div class="timeline-org">Tata Consultancy Services</div>
+        <div class="timeline-body">Designed end-to-end AI automation for pharmacovigilance case processing using NLP (spaCy, NLTK) and ML (SVM, CRF). Published research in Elsevier on AI applications in drug safety monitoring via social media data.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">Jun 2016 – Jun 2019</div>
+        <div class="timeline-role">Solution Architect — Large Norwegian Bank</div>
+        <div class="timeline-org">Tata Consultancy Services · Oslo, Norway</div>
+        <div class="timeline-body">Built a Digital Innovation Lab, established ML-driven data analysis frameworks, and led GDPR/FSA-compliant test environments with data masking and application virtualisation.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">Oct 2006 – Jun 2016</div>
+        <div class="timeline-role">Delivery Manager & Pre-Sales Lead</div>
+        <div class="timeline-org">Tata Consultancy Services · Netherlands, UK</div>
+        <div class="timeline-body">Managed RFP responses and delivery excellence for a large Netherlands bank. Designed solution architecture for UK life insurance policy systems.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CREDENTIALS -->
+<section id="credentials">
+  <div class="section-inner">
+    <div class="section-label">Credentials</div>
+    <h2 class="section-title">Education &amp; certifications</h2>
+
+    <div class="creds-grid">
+      <div class="cred-card fade-up">
+        <div class="cred-icon-wrap">🏛</div>
+        <div>
+          <div class="cred-title">Claude Certified Architect – Foundations</div>
+          <div class="cred-org">Anthropic</div>
+          <div class="cred-year">Certified May 2026</div>
+        </div>
+      </div>
+      <div class="cred-card fade-up" style="transition-delay:0.1s">
+        <div class="cred-icon-wrap">☁️</div>
+        <div>
+          <div class="cred-title">Google Cloud Certified: Cloud Digital Leader</div>
+          <div class="cred-org">Google Cloud</div>
+          <div class="cred-year">Certified Sep 2022</div>
+        </div>
+      </div>
+      <div class="cred-card fade-up" style="transition-delay:0.2s">
+        <div class="cred-icon-wrap">📖</div>
+        <div>
+          <div class="cred-title">Published Research — AI in Pharmacovigilance</div>
+          <div class="cred-org">Elsevier · ScienceDirect</div>
+          <div class="cred-year">B9780323897778000014</div>
+        </div>
+      </div>
+      <div class="cred-card fade-up">
+        <div class="cred-icon-wrap">🎓</div>
+        <div>
+          <div class="cred-title">PG Diploma in Data Science</div>
+          <div class="cred-org">Symbiosis Skills &amp; Open University, Pune</div>
+          <div class="cred-year">2019–2020</div>
+        </div>
+      </div>
+      <div class="cred-card fade-up" style="transition-delay:0.1s">
+        <div class="cred-icon-wrap">🔧</div>
+        <div>
+          <div class="cred-title">Bachelor of Engineering</div>
+          <div class="cred-org">Thadomal Shahani Engineering College, Mumbai</div>
+          <div class="cred-year">1996–2000</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="section-label">Let's Talk</div>
+    <h2 class="section-title">Ready to build your AI advantage?</h2>
+    <p class="section-body">Whether you have a defined project or are still exploring the possibilities, I offer a focused discovery conversation to understand your context and identify the highest-value AI opportunities.</p>
+
+    <div class="contact-grid">
+      <a href="mailto:subhashk.nadar@gmail.com" class="contact-item">
+        <span class="contact-item-icon">✉</span> subhashk.nadar@gmail.com
+      </a>
+      <a href="tel:+919930670069" class="contact-item">
+        <span class="contact-item-icon">📱</span> +91 99306 70069
+      </a>
+      <a href="https://linkedin.com/in/subhash-nadar" target="_blank" class="contact-item">
+        <span class="contact-item-icon">🔗</span> linkedin.com/in/subhash-nadar
+      </a>
+      <span class="contact-item">
+        <span class="contact-item-icon">📍</span> Pune, India · Global engagements
+      </span>
+    </div>
+
+    <a href="mailto:subhashk.nadar@gmail.com" class="btn-gold">Schedule a Discovery Call →</a>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Nadar AI Consulting. All rights reserved.</span>
+  <span>Subhash Kumar Nadar · Pune, India</span>
+  <a href="https://linkedin.com/in/subhash-nadar" target="_blank">LinkedIn ↗</a>
+</footer>
+
+<script>
+  // Mobile menu
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => mobileMenu.classList.toggle('open'));
+  function closeMobile() { mobileMenu.classList.remove('open'); }
+
+  // Scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+  // Make hero elements visible on load
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.querySelectorAll('.hero .fade-up').forEach(el => el.classList.add('visible'));
+    }, 100);
+  });
+</script>
+</body>
+</html>
