@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nadar AI Consulting — Enterprise AI Architecture & Strategy</title>
-<meta name="description" content="Subhash Kumar Nadar — Senior GenAI Consultant, AI/ML Architect with 25+ years experience delivering enterprise AI solutions across BFSI, Pharma, and CPG sectors.">
+<meta name="description" content="Subhash Kumar Nadar — Senior GenAI Consultant and AI/ML Architect sharing enterprise AI insights, agentic AI experiments, RAG architecture patterns, Hermes agent setup experiences, and production GenAI engineering learnings.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
@@ -363,6 +363,108 @@
   }
   .exp-dot { width: 4px; height: 4px; border-radius: 50%; background: var(--gold); flex-shrink: 0; }
 
+
+  /* ─── INSIGHTS ─── */
+  #insights {
+    background: var(--white);
+  }
+
+  .insights-header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: end;
+    margin-bottom: 3.5rem;
+  }
+
+  .insights-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .insight-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .insight-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+  }
+
+  .insight-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 32px rgba(15,17,23,0.08);
+  }
+
+  .insight-meta {
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gold-dark);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+
+  .insight-title {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    line-height: 1.35;
+    color: var(--ink);
+    margin-bottom: 1rem;
+  }
+
+  .insight-body {
+    font-size: 0.92rem;
+    color: var(--ink-2);
+    line-height: 1.8;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+  }
+
+  .insight-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .insight-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.82rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    text-decoration: none;
+    color: var(--accent);
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+
+  .insight-link:hover {
+    color: var(--gold-dark);
+  }
+
+  @media (max-width: 768px) {
+    .insights-header {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
+
+
   /* ─── JOURNEY ─── */
   #journey { background: var(--surface); }
   .timeline { margin-top: 3rem; position: relative; }
@@ -461,6 +563,12 @@
     section { padding: 4rem var(--gutter); }
   }
 </style>
+
+<meta property="og:title" content="Nadar AI Consulting — Enterprise AI Architecture & Strategy">
+<meta property="og:description" content="Enterprise AI consulting, GenAI architecture, RAG systems, agentic AI, and hands-on AI engineering insights.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://yourdomain.com">
+
 </head>
 <body>
 
@@ -471,6 +579,7 @@
     <li><a href="#services">Services</a></li>
     <li><a href="#work">Work</a></li>
     <li><a href="#expertise">Expertise</a></li>
+    <li><a href="#insights">Insights</a></li>
     <li><a href="#journey">Journey</a></li>
     <li><a href="#contact" class="nav-cta">Engage</a></li>
   </ul>
@@ -482,6 +591,7 @@
   <a href="#services" onclick="closeMobile()">Services</a>
   <a href="#work" onclick="closeMobile()">Work</a>
   <a href="#expertise" onclick="closeMobile()">Expertise</a>
+  <a href="#insights" onclick="closeMobile()">Insights</a>
   <a href="#journey" onclick="closeMobile()">Journey</a>
   <a href="#contact" onclick="closeMobile()">Contact</a>
 </div>
@@ -766,6 +876,98 @@
     </div>
   </div>
 </section>
+
+
+<!-- INSIGHTS -->
+<section id="insights">
+  <div class="section-inner">
+
+    <div class="insights-header">
+      <div>
+        <div class="section-label">AI Engineering Notes</div>
+        <h2 class="section-title">
+          Hands-on insights from the rapidly evolving AI ecosystem
+        </h2>
+      </div>
+
+      <p class="section-body" style="max-width: 420px; align-self: end;">
+        Practical implementation learnings, architecture experiments,
+        tooling evaluations, and enterprise AI field notes from real-world
+        delivery experience.
+      </p>
+    </div>
+
+    <div class="insights-grid">
+
+      <article class="insight-card fade-up">
+        <div class="insight-meta">May 2026 · Agentic AI</div>
+
+        <h3 class="insight-title">
+          Setting Up Hermes Agent: Architecture, Tooling & Real-World Experience
+        </h3>
+
+        <p class="insight-body">
+          A hands-on exploration of configuring Hermes agents, integrating tools,
+          evaluating orchestration quality, and understanding the practical
+          challenges of building autonomous AI workflows in real environments.
+        </p>
+
+        <div class="insight-tags">
+          <span class="tag gold">Hermes Agent</span>
+          <span class="tag">Agentic AI</span>
+          <span class="tag">Multi-Agent Systems</span>
+          <span class="tag">LLM Orchestration</span>
+        </div>
+
+        <a href="hermes-agent-setup.html" class="insight-link">
+          Read Article →
+        </a>
+      </article>
+
+      <article class="insight-card fade-up" style="transition-delay:0.1s">
+        <div class="insight-meta">Coming Soon</div>
+
+        <h3 class="insight-title">
+          Enterprise RAG Beyond Demos: What Actually Breaks in Production
+        </h3>
+
+        <p class="insight-body">
+          Lessons from implementing retrieval systems at enterprise scale —
+          including chunking failures, hallucination control, vector strategy,
+          observability, and governance.
+        </p>
+
+        <div class="insight-tags">
+          <span class="tag">RAG</span>
+          <span class="tag">Vector Databases</span>
+          <span class="tag">Enterprise AI</span>
+        </div>
+      </article>
+
+      <article class="insight-card fade-up" style="transition-delay:0.2s">
+        <div class="insight-meta">Coming Soon</div>
+
+        <h3 class="insight-title">
+          Scaling a 90-Member GenAI Factory: Operating Model & Delivery Learnings
+        </h3>
+
+        <p class="insight-body">
+          Insights into team structures, AI operating models, governance,
+          prioritisation, and delivery mechanisms required to scale enterprise
+          AI execution beyond isolated PoCs.
+        </p>
+
+        <div class="insight-tags">
+          <span class="tag">AI Factory</span>
+          <span class="tag">AI Leadership</span>
+          <span class="tag">GenAI Delivery</span>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
 
 <!-- JOURNEY -->
 <section id="journey">
